@@ -1,3 +1,5 @@
+using Basket.API.Repositories;
+
 namespace Basket.API
 {
     public class Program
@@ -12,6 +14,8 @@ namespace Basket.API
             {
                 options.Configuration = builder.Configuration.GetValue<string>("CacheSettings:ConnectionString");
             });
+
+            builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

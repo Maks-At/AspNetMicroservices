@@ -1,3 +1,4 @@
+using Discount.API.Extensions;
 using Discount.API.Repositories;
 
 namespace Discount.API
@@ -16,6 +17,8 @@ namespace Discount.API
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            app.MigrateDatabase<Program>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

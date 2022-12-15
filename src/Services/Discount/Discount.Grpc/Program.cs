@@ -1,3 +1,4 @@
+using AutoMapper;
 using Discount.Grpc.Extensions;
 using Discount.Grpc.Repositories;
 using Discount.Grpc.Services;
@@ -16,6 +17,7 @@ namespace Discount.Grpc
 
             // Add services to the container.
             builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddGrpc();
 
             var app = builder.Build();

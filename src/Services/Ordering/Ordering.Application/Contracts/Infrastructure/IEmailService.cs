@@ -1,4 +1,4 @@
-﻿using Ordering.Application.Contracts.Models;
+﻿using Ordering.Application.Models;
 
 namespace Ordering.Application.Contracts.Infrastructure
 {

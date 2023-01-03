@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging.Console;
+using Ocelot.Cache.CacheManager;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
@@ -29,7 +30,9 @@ namespace OcelotApiGw
                 .AddConsole()
                 .AddDebug();
 
-            builder.Services.AddOcelot(builder.Configuration);
+            builder.Services
+                .AddOcelot(builder.Configuration)
+                .AddCacheManager(settings => settings.WithDictionaryHandle());
 
             var app = builder.Build();
             app.UseRouting();

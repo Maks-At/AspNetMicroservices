@@ -1,3 +1,5 @@
+using Shopping.Aggregator.Services;
+
 namespace Shopping.Aggregator
 {
     public class Program
@@ -5,6 +7,16 @@ namespace Shopping.Aggregator
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //HttpClient Configuration
+            builder.Services.AddHttpClient<ICatalogService, CatalogService>(c =>
+                c.BaseAddress = new Uri(builder.Configuration["ApiSettings:CatalogUrl"]));
+
+            builder.Services.AddHttpClient<IBasketService, BasketService>(c =>
+                c.BaseAddress = new Uri(builder.Configuration["ApiSettings:BasketUrl"]));
+
+            builder.Services.AddHttpClient<IOrderService, OrderService>(c =>
+                c.BaseAddress = new Uri(builder.Configuration["ApiSettings:OrderingUrl"]));
 
             // Add services to the container.
 
